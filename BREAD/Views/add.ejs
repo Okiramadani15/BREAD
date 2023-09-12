@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <form action="/add" method="post" class="add-container" >
+        <label for="name">Name</label>
+        <input type="text" class="add-box" name="name" placeholder="Masukkan nama" required/>
+        <label for="height">Height</label>
+        <input type="number" class="add-box" name="height" placeholder="masukkan tinggi badan"  required/>
+        <label for="weight">Weight</label>
+        <input type="number" step="0.0001" class="add-box" name = 'weight' placeholder="masukkan berat badan" required/>
+        <label for="birthdate">Birth Date</label>
+        <input type="date" class="add-box" name = 'birthdate' placeholder="yyyy/mm/dd" required/>
+        <label for="married">Is Married</label>
+        <select name="married" class="add-box" required>
+            <option disabled selected>apakah kamu sudah menikah?</option>
+            <option value="Yes">Yes</option>
+            <option value="Not Yet">Not Yet</option>
+        </select>
+        <div>
+        <button type="submit" class="add-save">Save</button>&nbsp;
+        <button class="add-cancel" href="/" >Back</button>
+    </div>
+    </form>
+</body>
+
+</html>

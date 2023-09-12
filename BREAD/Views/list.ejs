@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BREAD</title>
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script src="/js/util.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div class="h2">
+        <h2>BREAD(Browse,Read,Edit,Add,Delete)</h2>
+      </div>
+      <!-- search -->
+      <div>
+        <form action="/" method="get" class="add-container">
+          <div class="row">
+            <div class="col-20">
+              <label for="name">Name</label>
+            </div>
+            <div class="col-80">
+              <input type="text" class="add-box" name="name" placeholder="insert your name" value="<%= query.name %>" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-20">
+              <label for="height">Height</label>
+            </div>
+            <div class="col-80">
+              <input type="number" class="add-box" name="height" placeholder="insert your height" value="<%= query.height %>" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-20">
+              <label for="weight">Weight</label>
+            </div>
+            <div class="col-80">
+              <input type="number" step="0.0001" class="add-box" name="weight" placeholder="insert your weigth" value="<%= query.weight %>" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-20">
+              <label for="birthdate">Birth Date</label>
+            </div>
+            <div class="col-80">
+              <input type="date" class="add-box" name="startdate" placeholder="yyyy/mm/dd" value="<%= query.startdate %>" />
+              s.d
+              <input type="date" class="add-box" name="enddate" placeholder="yyyy/mm/dd" value="<%= query.enddate %>" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-20">
+              <label for="married">Is Married</label>
+            </div>
+            <div class="col-80">
+              <%if(query.married=='1' ){ %>
+              <select name="married" id="married">
+                <option disabled>-select married-</option>
+                <option value="Yes" selected>Yes</option>
+                <option value="Not Yet">No Yet</option>
+              </select>
+              <% } else if (query.married=='0' ){ %>
+              <select name="married" id="married">
+                <option disabled>-select married</option>
+                <option value="Yes">Yes</option>
+                <option value="Not Yet" selected>Not Yet</option>
+              </select>
+              <% } else {%>
+              <select name="married" id="married">
+                <option disabled selected>-select married-</option>
+                <option value="Yes">Yes</option>
+                <option value="Not Yet">Not Yet</option>
+              </select>
+              <% } %>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-20">
+            <legend>Operation</legend>
+        </div>
+          <div class="col-80">
+            <% if(query.radio_button=='OR' ) { %> 
+              <input type="radio" id="OR" name="radio_button" value="OR" checked= />OR
+            <input type="radio" id="AND" name="radio_button" value="AND" />AND
+             <% }else if(query.radio_button=='AND' ) { %> 
+              <input type="radio" id="OR" name="radio_button" value="OR" />OR
+            <input type="radio" id="AND" name="radio_button" value="AND" checked />AND
+             <% }else { %> 
+              <input type="radio" id="OR" name="radio_button" value="OR" />OR 
+              <input type="radio" id="AND" name="radio_button" value="AND" />AND 
+              <% } %>
+          </div>
+        </div>
+        <br>
+        <br>    
+          <!--submit button-->
+          <div>
+            <button type="submit" class="add-search">search</button>
+            <a  class="add-reset" href="/">reset</a>
+          </div>
+        </form>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Birthdate</th>
+            <th>Married</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((daftar, index)=> { %>
+          <tr>
+            <td><%= index + offset + 1 %></td>
+            <td><%= daftar.name %></td>
+            <td><%= daftar.height %></td>
+            <td><%= daftar.weight %></td>
+            <td><%= daftar.birthdate %></td>
+            <td><%= daftar.married ? 'Sudah menikah ' : 'Belum menikah' %></td>
+            <td><a  href="/edit/<%= daftar.id %>" class="btn-update">Update</a>
+              <a href="/delete/<%= daftar.id %>" onclick="return confirmation('<%= daftar.name %>')" class="btn-delete">Delete</a></td>
+
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <div class="bawah">
+      <a href="/add" class="list-add">Add</a> 
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+      <% for(let i=1; i <=pages; i++){%>
+      <a href="<%=url.includes('page=')? `/?${url.slice(2).replace(`page=${page}`, `page=${i}`)}`:`/?page=${i}` %>"> <%= i %> </a>
+      <% } %>
+      <a href="#">&raquo;</a>
+    </div>
+    </div>
+    <script src="./utils/util.js"></script>
+  </body>
+</html>

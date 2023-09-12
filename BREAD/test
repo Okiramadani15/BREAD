@@ -1,0 +1,17 @@
+CREATE TABLE data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR (100) NOT NULL,
+    height INTEGER,
+    weight FLOAT,
+    birthdate DATE,
+    married BOOlEAN DEFAULT FALSE);
+
+
+
+
+INSERT INTO data (name,height,weight,birthdate,married) VALUES
+("hilmi",   "185",  "59.6", "1993-02-15", "not yet "),
+("wildan",  "185",  "72.1", "1990-09-07",  "not yet "),
+("aziz",    "171",  "67.5", "1999-09-09", "yes"),
+("himawan", "181",  "68.8", "1989-12-17", "not yet");
+
